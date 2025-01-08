@@ -12,6 +12,7 @@ import java.util.Properties;
 public class Util {
     private static Connection connect = null;
     private static Util instance = null;
+    static SessionFactory sessionFactory = null;
 
     private Util() {
         try {
@@ -22,19 +23,6 @@ public class Util {
             System.out.println("Нету соединения");
         }
     }
-
-    public Connection getConnect() {
-        return connect;
-    }
-
-    public static Util getInstance() {
-        if (null == instance) {
-            instance = new Util();
-        }
-        return instance;
-    }
-
-    static SessionFactory sessionFactory = null;
 
     static  {
         try {
@@ -57,5 +45,14 @@ public class Util {
         return sessionFactory.openSession();
     }
 
+    public Connection getConnect() {
+        return connect;
+    }
 
+    public static Util getInstance() {
+        if (null == instance) {
+            instance = new Util();
+        }
+        return instance;
+    }
 }
